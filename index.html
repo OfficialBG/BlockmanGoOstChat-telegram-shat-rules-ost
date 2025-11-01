@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Official Ost Chat Rules</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --primary-dark: #5649c0;
+            --secondary: #00cec9;
+            --dark: #0a0a0a;
+            --dark-light: #151515;
+            --gray: #2a2a2a;
+            --light: #e0e0e0;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.5;
+            overflow-x: hidden;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--dark-light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--white);
+        }
+
+        .logo-text {
+            font-size: 18px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background-color: var(--gray);
+            border-radius: 20px;
+            padding: 4px;
+            position: relative;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid #444;
+            width: fit-content;
+        }
+
+        .language-option {
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-weight: 600;
+            font-size: 12px;
+            z-index: 2;
+            transition: var(--transition);
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .language-active {
+            color: var(--white);
+        }
+
+        .language-slider {
+            position: absolute;
+            height: calc(100% - 8px);
+            width: calc(50% - 4px);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 16px;
+            transition: var(--transition);
+            left: 4px;
+        }
+
+        .language-en .language-slider {
+            left: calc(50% + 0px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 40px 0 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(108, 92, 231, 0.08), transparent 50%);
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--light);
+        }
+
+        .highlight {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        /* Content Sections */
+        .section {
+            padding: 40px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+            width: 100%;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 1px;
+        }
+
+        .content-block {
+            background-color: var(--dark-light);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: var(--transition);
+            border: 1px solid var(--gray);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+
+        .content-block:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .content-block h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rules-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .rules-list li {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .rules-list li::before {
+            content: '•';
+            color: var(--primary);
+            font-size: 1.2rem;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+
+        .rule-category {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: rgba(42, 42, 42, 0.5);
+            border-radius: 8px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .rule-category h4 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rule-item {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .rule-item::before {
+            content: '•';
+            color: var(--secondary);
+            font-size: 1rem;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .warning-section {
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(0, 206, 201, 0.1));
+            border-left: 4px solid var(--secondary);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .warning-section p {
+            margin-bottom: 8px;
+        }
+
+        .warning-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .note-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(42, 42, 42, 0.3);
+            border-radius: 8px;
+            border-left: 3px solid var(--secondary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-light);
+            padding: 25px 0;
+            text-align: center;
+            border-top: 1px solid var(--gray);
+            margin-top: 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-link {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-size: 1.1rem;
+            transition: var(--transition);
+            text-decoration: none;
+            border: 1px solid #444;
+        }
+
+        .social-link:hover {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .copyright {
+            color: var(--light);
+            opacity: 0.7;
+            font-size: 0.8rem;
+        }
+
+        /* Scroll Animations */
+        .fade-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.4rem;
+            }
+            
+            .content-block {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-content {
+                padding: 10px 0;
+            }
+            
+            .hero {
+                padding: 30px 0 20px;
+            }
+            
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            
+            .hero p {
+                font-size: 0.9rem;
+            }
+            
+            .section {
+                padding: 30px 0;
+            }
+            
+            .language-option {
+                padding: 5px 10px;
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="logo-text">BlockmanGoOst</div>
+                </div>
+                <div class="language-toggle" id="languageToggle">
+                    <div class="language-slider"></div>
+                    <div class="language-option language-active" data-lang="ru">RU</div>
+                    <div class="language-option" data-lang="en">EN</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 id="hero-title">Chat Rules</h1>
+            <p id="hero-description">🤗 Привет! Чтобы общение было приятным и комфортным для всех, просим вас соблюдать простые правила:</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Rules Section -->
+        <section class="section">
+            <h2 class="section-title" id="rules-title">Правила чата</h2>
+            <div class="content-block fade-scroll">
+                <h3><i class="fas fa-list-alt"></i> <span id="main-rules-title">Основные правила</span></h3>
+                <div id="rules-list">
+                    <!-- Categories will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Notes Section -->
+        <section class="section">
+            <div class="content-block fade-scroll">
+                <h3><i class="fas fa-sticky-note"></i> <span id="notes-title">Примечания</span></h3>
+                <div class="note-section">
+                    <div id="notes-content">
+                        <!-- Notes content will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!--<div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>-->
+                <div class="copyright" id="copyright-text">
+                    &copy; 2025 Official Ost. Все права защищены.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language content
+        const content = {
+            ru: {
+                heroTitle: "Blockman Go Ost Chat",
+                heroDescription: "🤗 Привет! Чтобы общение было приятным и комфортным для всех, просим вас соблюдать простые правила:",
+                rulesTitle: "Правила чата",
+                mainRulesTitle: "Основные правила",
+                rulesCategories: [
+                    {
+                        title: "𝟣.𝟣 - Уважение 🤗",
+                        items: [
+                            "Запрещены оскорбления администрации этого сообщества и всей администрации игры Blockman GO.",
+                            "Раскрытие любой личной информация (номер телефона, домашний адрес, фотографии, электронная почта и т.д.) без согласия их владельца запрещено.",
+                            "Спам, т.е. отправка повторяющихся сообщений (включая стикеры и GIF), или сообщений, содержащих в себе флуд запрещены."
+                        ]
+                    },
+                    {
+                        title: "𝟣.𝟤 - Реклама 📢",
+                        items: [
+                            "Реклама любых веб-сайтов и социальных сетей в любой форме запрещена.",
+                            "Покупка, продажа и обмен чего-либо в чате строго запрещены. Исключение: продажа игровых ресурсов в любом режиме за монеты, или ресурсы из этого же режима (например: ресурсы Sky Block за монеты)."
+                        ]
+                    },
+                    {
+                        title: "𝟣.𝟥 - Дополнительно 👀",
+                        items: [
+                            "Запрещено выдавать себя за администрацию или модераторов.",
+                            "Запрещено обсуждение действий модераторов/администрации в чате. Для этого существуют личные сообщения."
+                        ]
+                    }
+                ],
+                notesTitle: "Примечания",
+                notesContent: [
+                    "– Наказания за нарушение правил выдаются на усмотрение администрации чата.",
+                    "– Администрация чата оставляет за собой право изменять данные правила.",
+                    "– Незнание правил не освобождает от ответственности.",
+                    "– Администрация чата оставляет за собой право принимать решения по ситуациям, не описанным в данных правилах."
+                ],
+                copyrightText: "&copy; 2025 Official Ost. Все права защищены."
+            },
+            en: {
+                heroTitle: "Blockman Go Ost Chat",
+                heroDescription: "🤗 Hello! To make communication pleasant and comfortable for everyone, we ask you to follow simple rules:",
+                rulesTitle: "Chat Rules",
+                mainRulesTitle: "Main Rules",
+                rulesCategories: [
+                    {
+                        title: "𝟣.𝟣 - Respect 🤗",
+                        items: [
+                            "Insults to the administration of this community and the entire Blockman GO game administration are prohibited.",
+                            "Disclosure of any personal information (phone number, home address, photos, email, etc.) without the consent of their owner is prohibited.",
+                            "Spam, i.e. sending repetitive messages (including stickers and GIFs), or messages containing flood is prohibited."
+                        ]
+                    },
+                    {
+                        title: "𝟣.𝟤 - Advertising 📢",
+                        items: [
+                            "Advertising of any websites and social networks in any form is prohibited.",
+                            "Buying, selling and exchanging anything in the chat is strictly prohibited. Exception: sale of game resources in any mode for coins, or resources from the same mode (for example: Sky Block resources for coins)."
+                        ]
+                    },
+                    {
+                        title: "𝟣.𝟥 - Additional 👀",
+                        items: [
+                            "It is forbidden to impersonate administration or moderators.",
+                            "Discussion of moderators/administration actions in the chat is prohibited. For this, there are personal messages."
+                        ]
+                    }
+                ],
+                notesTitle: "Notes",
+                notesContent: [
+                    "– Penalties for violating the rules are issued at the discretion of the chat administration.",
+                    "– The chat administration reserves the right to change these rules.",
+                    "– Ignorance of the rules does not exempt from responsibility.",
+                    "– The chat administration reserves the right to make decisions on situations not described in these rules."
+                ],
+                copyrightText: "&copy; 2025 Official Ost. All rights reserved."
+            }
+        };
+
+        // DOM elements
+        const languageToggle = document.getElementById('languageToggle');
+        
+        // Get saved language from localStorage or default to Russian
+        const getSavedLanguage = () => {
+            return localStorage.getItem('selectedLanguage') || 'ru';
+        };
+        
+        // Save language to localStorage
+        const saveLanguage = (lang) => {
+            localStorage.setItem('selectedLanguage', lang);
+        };
+        
+        // Initialize with saved language
+        const initLanguage = () => {
+            const savedLang = getSavedLanguage();
+            
+            // Set toggle position
+            if (savedLang === 'en') {
+                languageToggle.classList.add('language-en');
+            } else {
+                languageToggle.classList.remove('language-en');
+            }
+            
+            // Update content
+            updateContent(savedLang);
+        };
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', initLanguage);
+        
+        // Language toggle event
+        languageToggle.addEventListener('click', function() {
+            const isEnglish = this.classList.contains('language-en');
+            const newLang = isEnglish ? 'ru' : 'en';
+            
+            // Toggle class for slider animation
+            this.classList.toggle('language-en');
+            
+            // Save language preference
+            saveLanguage(newLang);
+            
+            // Change language
+            updateContent(newLang);
+        });
+        
+        // Update content function
+        function updateContent(lang) {
+            // Update all text content
+            document.getElementById('hero-title').textContent = content[lang].heroTitle;
+            document.getElementById('hero-description').textContent = content[lang].heroDescription;
+            document.getElementById('rules-title').textContent = content[lang].rulesTitle;
+            document.getElementById('main-rules-title').textContent = content[lang].mainRulesTitle;
+            document.getElementById('notes-title').textContent = content[lang].notesTitle;
+            
+            // Update rules categories
+            updateRulesList(lang);
+            
+            // Update notes content
+            updateNotesContent(lang);
+            
+            document.getElementById('copyright-text').innerHTML = content[lang].copyrightText;
+        }
+        
+        // Update rules list function
+        function updateRulesList(lang) {
+            const rulesList = document.getElementById('rules-list');
+            rulesList.innerHTML = '';
+            
+            content[lang].rulesCategories.forEach((category) => {
+                const categoryDiv = document.createElement('div');
+                categoryDiv.classList.add('rule-category');
+                
+                const categoryTitle = document.createElement('h4');
+                categoryTitle.innerHTML = `<i class="fas fa-minus"></i> ${category.title}`;
+                categoryDiv.appendChild(categoryTitle);
+                
+                category.items.forEach((item) => {
+                    const ruleItem = document.createElement('div');
+                    ruleItem.classList.add('rule-item');
+                    ruleItem.textContent = item;
+                    categoryDiv.appendChild(ruleItem);
+                });
+                
+                rulesList.appendChild(categoryDiv);
+            });
+        }
+        
+        // Update notes content function
+        function updateNotesContent(lang) {
+            const notesContent = document.getElementById('notes-content');
+            notesContent.innerHTML = '';
+            
+            content[lang].notesContent.forEach((item) => {
+                const p = document.createElement('p');
+                p.textContent = item;
+                notesContent.appendChild(p);
+            });
+        }
+        
+        // Scroll animations
+        const fadeScrollElements = document.querySelectorAll('.fade-scroll');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        fadeScrollElements.forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
